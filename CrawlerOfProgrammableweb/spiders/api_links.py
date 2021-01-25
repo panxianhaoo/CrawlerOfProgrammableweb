@@ -14,9 +14,9 @@ class web(scrapy.Spider):
 
     def parse(self, response):
         f = open('./api_links.json', 'a')
-        odd = response.xpath(
+        links = response.xpath(
             '//*[@id="block-system-main"]/article/div[7]/div[2]/table/tbody/tr/td[1]/a/@href').extract()
-        for item in odd:
+        for item in links:
             print(item)
             f.write(pre + item + "\n")
         next_page = response.css('li.pager-last a::attr(href)').extract_first()
